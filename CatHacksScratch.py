@@ -9,7 +9,7 @@ class html_parser(HTMLParser):
         super().__init__()
         self.link_set = set()
     
-    def __init__(self, link_set):
+    def __init__(self, link_set, print_p):
         super().__init__()
         self.link_set = link_set
     
@@ -19,6 +19,8 @@ class html_parser(HTMLParser):
             if attrs[0][0] == 'href':
                 if pattern.match(attrs[0][1]):
                     self.link_set.add(attrs[0][1])
+        if tag == 'p' && print_p:
+            print(attrs)
     
     def handle_data(self, data):
         pass
@@ -33,8 +35,8 @@ class html_parser(HTMLParser):
 def dispGuide(url):
     html_doc_raw = urllib.request.urlopen(url)
     html_doc = html_doc_raw.read().decode("utf8")
-    html_processor = html_parser()
-    html_processor
+    html_processor = html_parser(link_set=None, True)
+    html_processor.feed(html_doc)
 
 html_doc_raw = urllib.request.urlopen("https://docs.oracle.com/javase/8/docs/")
 html_doc = html_doc_raw.read().decode("utf8")
