@@ -12,6 +12,7 @@ class html_parser(HTMLParser):
     def __init__(self, link_set, print_p):
         super().__init__()
         self.link_set = link_set
+        self.print_p = print_p
     
     def handle_starttag(self, tag, attrs):
         pattern = re.compile("technotes/")
