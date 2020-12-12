@@ -20,7 +20,7 @@ class html_parser(HTMLParser):
             if attrs[0][0] == 'href':
                 if pattern.match(attrs[0][1]):
                     self.link_set.add(attrs[0][1])
-        if tag == 'p' && print_p:
+        if tag == 'p' and print_p:
             print(attrs)
     
     def handle_data(self, data):
